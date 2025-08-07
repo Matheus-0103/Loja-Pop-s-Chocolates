@@ -1,0 +1,141 @@
+<!-- chocolate_shop.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ChocDelícia - Loja Online de Chocolates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+</head>
+<body class="bg-amber-50" itemscope itemtype="https://schema.org/WebPage">
+    <!-- Header/Navigation -->
+    <header class="bg-amber-900 text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="img/logo.png" alt="Logo ChocDelícia" class="h-10">
+                <h1 class="text-xl font-bold">ChocDelícia</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="hover:text-amber-200">Início</a></li>
+                    <li><a href="#products" class="hover:text-amber-200">Produtos</a></li>
+                    <li><a href="#about" class="hover:text-amber-200">Sobre</a></li>
+                    <li><a href="#contact" class="hover:text-amber-200">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="loginBtn" class="bg-amber-700 hover:bg-amber-600 px-4 py-2 rounded">Login</button>
+                <div id="adminNav" class="hidden bg-red-600 hover:bg-red-500 px-4 py-2 rounded hidden">
+                    <button id="adminPanelBtn">Admin</button>
+                </div>
+                <div class="relative">
+                    <button id="cartBtn" class="bg-amber-800 hover:bg-amber-700 px-4 py-2 rounded flex items-center">
+                        <span>Carrinho</span>
+                        <span id="cartCount" class="ml-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">Login / Cadastro</h2>
+                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <div id="loginTab">
+                <div class="mb-4">
+                    <label for="loginEmail" class="block text-sm text-gray-700 mb-1">E-mail</label>
+                    <input type="email" id="loginEmail" class="w-full px-3 py-2 border rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="loginPassword" class="block text-sm text-gray-700 mb-1">Senha</label>
+                    <input type="password" id="loginPassword" class="w-full px-3 py-2 border rounded-md">
+                </div>
+                <button id="doLoginBtn" class="w-full bg-amber 700 text-white py-2 rounded-md mb-">Entrar</button>
+                <p class="text-center lg">Não tem conta? <button id="showRegisterBtn" class="text-amber-700">Cadastre-se</button></p>
+            </div>
+        </div
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section id="home" class="mb-16">
+            <div class="relative rounded-lg overflow-hidden">
+                <img src="img/hero.jpg" alt="Chocolates artesanais" class="w-full h-64 md:h-96 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Os Melhores Chocolates Artesanais</h2>
+                        <a href="#products" class="bg-amber-700 hover:bg-amber-600 text-white font-bold py-2 px-6 rounded-full inline-block">Compre Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="mb-16">
+            <h2 class="text-2xl font-bold mb-8">Nossos Produtos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="productsGrid">
+                <template id="productTemplate">
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                        <img src="" data-img class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 data-name class="font-bold text-lg mb-1"></h3>
+                            <p data-description class="text-gray-600 text-sm mb-2"></p>  
+                            <div class="flex justify-between items-center">
+                                <span data-price class="font-bold text-amber-700"></span>
+                                <button data-add class="bg-amber-600 text-white px-3 py-1 rounded text-sm">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <button id="closeCartModalBtn" class="text-gray-500 hover:text-gray-700 float-right">&times;</button>
+            <h2 class="text-xl font-bold mb-4">Seu Carrinho</h2>
+            <div id="cartItems">
+                <!-- Cart items loaded dynamically --> 
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between font-bold">
+                    <span>Total:</span>
+                    <span id="cartTotal">R$ 0,00</span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-amber-700 text-white py-2 rounded-md mt-4 disabled:opacity-50" disabled>Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-4xl">
+            <button id="closeAdminModalBtn" class="text-gray-500 hover:text-gray-700 float-right">&times;</button>
+            <h2 class="text-xl font-bold mb-4">Painel Administrativo</h2>
+            <div id="adminContent">
+                <!-- Admin content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading polyfill for older browser support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    
+    <!-- Core functionality -->
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/admin.js"></script>
+    
+    <!-- Main application script -->
+    <script src="js/main.js" defer></script>
+</body>
+</html>
