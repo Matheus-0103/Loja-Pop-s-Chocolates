@@ -1,40 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f9f5f0;
-}
-
-.chocolate-card {
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.chocolate-card:hover {
+/* styles.css */
+.product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.add-to-cart {
-    transition: all 0.2s ease;
+.admin-only {
+    display: none;
 }
 
-.add-to-cart:hover {
-    transform: scale(1.05);
+.smooth-transition {
+    transition: all 0.3s ease;
 }
 
-.cart-item {
-    animation: fadeIn 0.3s ease;
+.cart-notification {
+    animation: pulse 1.5s infinite;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
